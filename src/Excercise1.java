@@ -1,9 +1,3 @@
-import sun.org.mozilla.javascript.internal.ast.ContinueStatement;
-
-import java.io.Console;
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 
 /**
@@ -89,6 +83,19 @@ public class Excercise1 {
             }
         return resultString.toString();
     }
+
+    protected static String ConvertHexStringToBitString (String hexString){
+        
+        StringBuilder resultStringBuilder = new StringBuilder();
+        
+        for(Character position:hexString.toCharArray()){
+            String bitRepresentation   = String.format("%4s" ,Integer.toBinaryString(Integer.parseInt(String.valueOf(position), 16))).replace(' ', '0');
+            resultStringBuilder.append(bitRepresentation);
+        }
+        return resultStringBuilder.toString();
+
+    }
+
 
     protected static String XorTwoBitStrings (String input1 , String input2){
 

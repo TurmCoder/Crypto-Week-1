@@ -33,9 +33,22 @@ public class Excercise1Test {
         assertTrue ("0".equals(result));
 
     }
+
     @Test
     public void Assert_That_Xoring_Large_Bitstrings_Works_Correct(){
         String result = Excercise1.XorTwoBitStrings("10010100101001", "01101011010111")   ;
         assertTrue ("11111111111110".equals(result));
+    }
+
+    @Test
+    public void Return_String_Should_Be_As_Long_As_Shortest_Input(){
+        String result = Excercise1.XorTwoBitStrings("101", "11")   ;
+        assertTrue (result.length()==2);
+    }
+
+    @Test
+    public void Should_Correctly_Convert_Hex_To_BitString(){
+        String result = Excercise1.ConvertHexStringToBitString("ff")   ;
+        assertTrue (result.equals("11111111"));
     }
 }
