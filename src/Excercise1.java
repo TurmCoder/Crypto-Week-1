@@ -1,3 +1,4 @@
+import java.io.Console;
 import java.util.Vector;
 
 /**
@@ -45,44 +46,14 @@ public class Excercise1 {
         vec.add(cipherText10);
         vec.add(cipherTextTarget);
         
-        for (String a:vec){
-            for (String b:vec){
-                System.out.println(XorTwoStrings( a, b));
-            }
+        String keyString = ConvertHexStringToBitString("6634");
+        
+        
+        for (String cip:vec){
+             System.out.println(ConvertHexStringToAscii(ConvertBitStringToHexString(XorTwoBitStrings(cip,keyString))));
         }
     }
-
-
-
-    protected static String XorTwoStrings(String cipherText1, String cipherText2) {
-        Vector<String> resultVector = new Vector<>();
-        StringBuilder resultString = new StringBuilder();
-        
-        int length = cipherText1.length()<cipherText2.length() ? cipherText1.length(): cipherText2.length() ;
-        
-        for (int i = 0; i < length; i++){
-             int currentNumber1 = Integer.parseInt(String.valueOf(cipherText1.toCharArray()[i]), 16) ;
-             int currentNumber2 = Integer.parseInt(String.valueOf(cipherText2.toCharArray()[i]), 16) ;
-             StringBuilder localStringBuilder = new StringBuilder();
-
-            String currentBitString1 = String.format("%4s" ,Integer.toBinaryString(currentNumber1)).replace(' ', '0');
-            String currentBitString2 = String.format("%4s" ,Integer.toBinaryString(currentNumber2)).replace(' ', '0');
-            
-            for (int j = 0; j < 4 ; j++){
-                localStringBuilder.append(Integer.parseInt(String.valueOf(currentBitString1.toCharArray()[j]))^Integer.parseInt(String.valueOf(currentBitString2.toCharArray()[j])));
-            }
-            resultVector.add(Integer.toHexString(Integer.valueOf(localStringBuilder.toString(), 2)));
-        }
-            for(int j = 0;j<80;j++){
-                for (int i = 0; i < resultVector.size() -1 ;i = i+2){
-
-                String test = resultVector.elementAt(i);
-                test += resultVector.elementAt(i+1);
-                resultString.append((char)(Integer.parseInt(test,16)))  ;
-                }
-            }
-        return resultString.toString();
-    }
+    
 
     protected static String ConvertHexStringToBitString (String hexString){
         
@@ -96,6 +67,11 @@ public class Excercise1 {
 
     }
 
+    protected static String ConvertBitStringToHexString (String bitString){
+
+        int i= Integer.parseInt(bitString,2);
+        return Integer.toHexString(i);
+    }
 
     protected static String XorTwoBitStrings (String input1 , String input2){
 
@@ -110,5 +86,18 @@ public class Excercise1 {
             resultStringBuilder.append(currentBit1^currentBit2);
         }
         return resultStringBuilder.toString();
+    }
+
+    protected static String ConvertHexStringToAscii(String hexString){
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for( int i=0; i<hexString.length()-1; i+=2 ){
+
+            String output = hexString.substring(i, (i + 2));
+            int decimal = Integer.parseInt(output, 16);
+            stringBuilder.append((char)decimal);
+        }
+        return stringBuilder.toString();
     }
 }

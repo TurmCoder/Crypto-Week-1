@@ -51,4 +51,17 @@ public class Excercise1Test {
         String result = Excercise1.ConvertHexStringToBitString("ff")   ;
         assertTrue (result.equals("11111111"));
     }
+
+    @Test
+    public void Should_Correctly_Convert_BitString_To_HexString(){
+        String result = Excercise1.ConvertBitStringToHexString("11111111")   ;
+        assertTrue (result.equals("ff"));
+    }
+
+    @Test
+    public void Should_Correctly_Convert_HexString_To_Ascii(){
+        String result = Excercise1.ConvertHexStringToAscii("4161426243634464")   ;
+        assertTrue (result.equals("ff"));
+    }
+
 }
