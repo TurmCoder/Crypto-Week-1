@@ -1,3 +1,5 @@
+import com.sun.deploy.util.StringUtils;
+
 import java.io.Console;
 import java.util.Vector;
 
@@ -14,11 +16,13 @@ public class Excercise1 {
         //To change body of created methods use File | Settings | File Templates.
     }
 
+    private static Vector<String> key= new Vector<>();
+
     public static void main(String[] args)
     {
-        String[] key= new String[2000];
-        key[0]="66";
-        key[1]="34";
+        key.add("66");
+        key.add("39");
+        key.add("6e");
 
         String cipherText1 = new String("315c4eeaa8b5f8aaf9174145bf43e1784b8fa00dc71d885a804e5ee9fa40b16349c146fb778cdf2d3aff021dfff5b403b510d0d0455468aeb98622b137dae857553ccd8883a7bc37520e06e515d22c954eba5025b8cc57ee59418ce7dc6bc41556bdb36bbca3e8774301fbcaa3b83b220809560987815f65286764703de0f3d524400a19b159610b11ef3e");
 
@@ -45,12 +49,19 @@ public class Excercise1 {
         vec.add(cipherText9);
         vec.add(cipherText10);
         vec.add(cipherTextTarget);
-        
-        String keyString = ConvertHexStringToBitString("6634");
-        
-        
-        for (String cip:vec){
-             System.out.println(ConvertHexStringToAscii(ConvertBitStringToHexString(XorTwoBitStrings(cip,keyString))));
+
+        for (int i = 32;i<132;i++){
+            System.out.println("###############################"+Integer.toHexString(i)+"##########################");
+            System.out.println();
+            String temporaryKeyBitString;
+            for(String s:vec)
+            {
+                StringUtils.join(key," :");
+                temporaryKeyBitString = (ConvertHexStringToBitString(StringUtils.join(key,"")+Integer.toHexString(i)));
+                System.out.println(ConvertHexStringToAscii(ConvertBitStringToHexString(XorTwoBitStrings(ConvertHexStringToBitString(s),temporaryKeyBitString))));
+            }
+            System.out.println();
+            System.out.println();
         }
     }
     
