@@ -61,7 +61,7 @@ public class Excercise1Test {
     @Test
     public void Should_Correctly_Convert_HexString_To_Ascii(){
         String result = Excercise1.ConvertHexStringToAscii("4161426243634464")   ;
-        assertTrue (result.equals("ff"));
+        assertTrue (result.equals("AaBbCcDd"));
     }
 
 }
